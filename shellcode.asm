@@ -18,8 +18,8 @@ start_listing:
     ;pop ecx
 
     ; Create 0x80 in eax
-    xor al, 0 ; Getting highest possible number from ascii chars (0x7F)
-    xor al, O
+    xor al, '0' ; Getting highest possible number from ascii chars (0x7F)
+    xor al, 'O'
 
     push eax ; Move eax to ecx to allow increment
     pop ecx
@@ -30,7 +30,7 @@ start_listing:
 
     ; We have 0x80 in both eax and ecx
 
-    xor al, 0x4D ; 0x4D = 'M' -- 0x4D XOR 0x80 = 0xCD
+    xor al, 'M' ; 0x4D XOR 0x80 = 0xCD
 
     ; We now have 0xCD and 0x80 in eax and ecx respectively
     ; We need to shift 0xCD to bit 8-15 to be able to push
@@ -63,7 +63,7 @@ start_listing:
     xor eax, 'NRYZ'
     push eax
 
-    ; mov esp ebx
+    ; move esp to ebx
     push esp
     pop eax
 
