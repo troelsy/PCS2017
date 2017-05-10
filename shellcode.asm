@@ -18,14 +18,11 @@ start_listing:
     ;pop ecx
 
     ; Create 0x80 in eax
-    xor al, 0x7A ; Starting with highest ascii symbol (z)
+    xor al, 0 ; Getting highest possible number from ascii chars (0x7F)
+    xor al, O
+
     push eax ; Move eax to ecx to allow increment
     pop ecx
-    inc ecx ; 0x7B
-    inc ecx ; 0x7C
-    inc ecx ; 0x7D
-    inc ecx ; 0x7E
-    inc ecx ; 0x7F
     inc ecx ; 0x80
 
     push ecx ; move 0x80 back to eax
