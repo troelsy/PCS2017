@@ -1,0 +1,30 @@
+
+Disposition - Writing ia32 alphanumeric shellcodes
+
+1. Motivation (Snak) [Troels]
+    - Hide and bypass filters
+2. Restrictions of ASCII (Tabeller) [Nicklas]
+    - Opcodes
+    - Values
+    - Operants
+3. Goal (Kode/brug af non-ascii) [Mads]
+4. Patterns/Macros/Substitutions (Kode/macros)
+    - Clear registers [Troels]
+        * eax
+        * Others
+    - Move [Troels]
+        * Literals
+        * Registers
+        * Memory
+    - Non-ascii value [Mads]
+        * Increment/decrement
+    - Construct disallowed bytes [Mads]
+        * Opcodes
+        * Value
+5. Convert original code (Kode)
+    - Construct and insert "int 0x80" [Mads (GDB)]
+    - Finding shellcode address [Nicklas]
+    - Push /bin/sh string [Nicklas]
+    - Setting syscall to SYS_execve [Nicklas]
+    - Fall through
+6. Demonstration (nasm/demo) [Nicklas]
