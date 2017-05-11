@@ -1,3 +1,5 @@
+; nasm shellcode.asm && gdb --args ./demo shellcode
+
 bits 32
 %include "include/all.asm"
 codelen equ inject-$
