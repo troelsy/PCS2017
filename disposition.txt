@@ -17,8 +17,8 @@ Disposition - Writing ia32 alphanumeric shellcodes
         * Registers
         * Memory
     - Non-ascii value [Mads]
-        * Increment/decrement
         * XOR bruteforce
+        * Increment/decrement
     - Construct disallowed bytes [Mads]
         * Opcodes
         * Value
