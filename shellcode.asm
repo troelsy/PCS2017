@@ -33,9 +33,9 @@ start_listing:
     xor al, 'M' ; 0x4D XOR 0x80 = 0xCD
 
     ; We now have 0xCD and 0x80 in eax and ecx respectively
-    ; We need to shift 0xCD to bit 8-15 to be able to push
-    ; them together on the stack
+    ; We place them at the point we want them executed
 
+    int3 ; Mads, 'Construct and insert "int 0x80"'
     xor [edx+codelen], al
     xor [edx+codelen+1], cl
 
