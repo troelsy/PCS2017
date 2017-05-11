@@ -3,38 +3,16 @@
 bits 32
 %include "include/all.asm"
 
-    ; mov eax, 0x12345678
+    ; mov eax, 'ABCD'
 
-    push '____'
+    push 'xxxx'
     pop eax
-    xor eax, '____'
-    xor eax, 0x12345678
+    xor eax, 'xxxx'
+    xor eax, 'ABCD'
 
 
-    int3
+    push 'xxxx'
+    pop edx
+    xor edx, 'xxxx'
+    xor edx, 0x30303030 ; ~ '0000'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ; Move illegal characters/literals
-    push '____'
-    pop eax
-    xor eax,'____'
-
-    xor al, 'O' ; O  = 01001111
-    xor al, 'D' ; D  = 01000100
-                ; \t = 00001011
-
-    int3
